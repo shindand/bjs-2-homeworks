@@ -56,12 +56,15 @@ function averageEvenElementsWorker(...arr) {
   let sumEvenElement = 0;
   let countEvenElement = 0;
 
+  if (arr.length > 0) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] % 2 == 0) {
       countEvenElement++;
       sumEvenElement += arr[i];
     }
   }
+}
+else {return 0;}
   return sumEvenElement / countEvenElement;
 }
 

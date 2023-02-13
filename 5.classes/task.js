@@ -7,7 +7,7 @@ class PrintEditionItem {
         this.type = type
     }
     fix() {
-        this.state = this.state * 1.5;
+        this.state *= 1.5;
     }
     set state(state) {
       if (state < 0) {
@@ -105,30 +105,31 @@ const picknick = new FantasticBook(
      }
     }
 
-   findBookBy(type, value) {
-           this.books.reduce((acc, items) => {
-              if (items[type] == value) {
-                 this._name = items[type];
-                 return this._name;
-               }     
-             }
-           );
-           
-           return null;         
+   findBookBy(type, value) {    
+        return this.books.find(item => (item[type] == value)) || null;
          }
      
 
          giveBookByName(bookName){
-            return this.books.forEach((element, index) => {
-                if (element.name == bookName) {
-                this.books.splice(index, 1);
-            }
-        });
-             
+   
+   if (this.books.find(item => item.name == bookName)) {
+
+       let bookfind = this.books.find((item, index) => item.name == bookName);
+
+       this.books.forEach((element, index) => {
+        if (element.name == bookName) {
+        this.books.splice(index, 1);
+        return bookfind;
     }
+ });
+       
+   }
+   else {
+    return 0;
+   }
 
   }
-
+  }
 
   const library = new Library("Библиотека имени Ленина");
 
@@ -154,11 +155,12 @@ library.addBook(new Magazine("Мурзилка", 1924, 60));
 
 //console.log(library.findBookBy("name", "Властелин колец")); //null
 //console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
-console.log(library.findBookBy("name", "Мурзилка")); //"Мурзилка"
+//console.log(library.findBookBy("name", "Мурзилка")); //"Мурзилка"
+//console.log(library.findBookBy("name", "бугагаш")); 
 //console.log(library.findBookBy("name", "Пикник на обочине")); 
 
 console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
-library.giveBookByName("Машина времени");
+console.log(library.giveBookByName("Машина времени"));
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
 
 
@@ -181,11 +183,18 @@ class Student {
     }
 
     getAverageBySubject(subject) {
+      if (this.marks[subject]) {
        return this.marks[subject].reduce((acc, item) => {return (acc + item)}, 0) / this.marks[subject].length;
     }
+    else {
+      return 0;
+    }
+  }
 
     getAverage(marks) {
-        return Object.keys(this.marks).reduce((acc, item) => {return (acc + this.getAverageBySubject(item))}, 0);
+      if (this.marks) {
+        return Object.keys(this.marks).reduce((acc, item) => {return (acc + this.getAverageBySubject(item))}, 0) / Object.keys(this.marks).length;
+      }
     }
  
 
@@ -194,10 +203,16 @@ class Student {
 const student = new Student("Виктор");
 
 console.log(student.addMark("геометрия", 5));
-console.log(student.addMark("геометрия", 3));
+//console.log(student.addMark("геометрия", 3));
 console.log(student.addMark("геометрия", 5));
 console.log(student.addMark("алгебра", 5));
-console.log(student.addMark("алгебра", 4));
-console.log(student.getAverageBySubject("геометрия"));
+console.log(student.addMark("алгебра", 3));
+//console.log(student.getAverageBySubject("геометрия"));
 console.log(student.getAverageBySubject("алгебра"));
 console.log(student.getAverage());
+//console.log(student.getAverageBySubject("алхимия"));
+
+
+
+
+ 

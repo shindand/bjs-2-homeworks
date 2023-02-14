@@ -110,27 +110,19 @@ const picknick = new FantasticBook(
          }
      
 
-         giveBookByName(bookName){
-   
-   if (this.books.find(item => item.name == bookName)) {
-
-       let bookfind = this.books.find((item, index) => item.name == bookName);
-
-       this.books.forEach((element, index) => {
-        if (element.name == bookName) {
-        this.books.splice(index, 1);
-        return bookfind;
+    giveBookByName(bookName){
+         let bookBy = this.books.filter((item, index) => item.name == bookName);
+         if (bookBy.length > 0) {
+          this.books.forEach((element, index) => {
+                  if (element.name == bookName) {
+                  this.books.splice(index, 1);
+         }
+        });
+        return bookBy;
     }
- });
-       
-   }
-   else {
-    return 0;
-   }
-
+    return null;
   }
-  }
-
+}
   const library = new Library("Библиотека имени Ленина");
 
   library.addBook(
@@ -142,16 +134,16 @@ const picknick = new FantasticBook(
    )
   );
   library.addBook(
-   new FantasticBook(
-     "Аркадий и Борис Стругацкие",
-     "Пикник на обочине",
-     1972,
-     168
-   )
-  );
+    new FantasticBook(
+      "Аркадий и Борис Стругацкие",
+      "Пикник на обочине",
+      1972,
+      168
+    )
+   );
 
   library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-library.addBook(new Magazine("Мурзилка", 1924, 60));
+//library.addBook(new Magazine("Мурзилка", 1924, 60));
 
 //console.log(library.findBookBy("name", "Властелин колец")); //null
 //console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
@@ -162,6 +154,9 @@ library.addBook(new Magazine("Мурзилка", 1924, 60));
 console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
 console.log(library.giveBookByName("Машина времени"));
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
+
+console.log(library.giveBookByName("Машина fhfjffk"));
+console.log(library.books.length);
 
 
 //                          Задание 3
@@ -202,14 +197,14 @@ class Student {
 
 const student = new Student("Виктор");
 
-console.log(student.addMark("геометрия", 5));
+//console.log(student.addMark("геометрия", 5));
 //console.log(student.addMark("геометрия", 3));
-console.log(student.addMark("геометрия", 5));
-console.log(student.addMark("алгебра", 5));
-console.log(student.addMark("алгебра", 3));
+//console.log(student.addMark("геометрия", 5));
+//console.log(student.addMark("алгебра", 5));
+//console.log(student.addMark("алгебра", 3));
 //console.log(student.getAverageBySubject("геометрия"));
-console.log(student.getAverageBySubject("алгебра"));
-console.log(student.getAverage());
+//console.log(student.getAverageBySubject("алгебра"));
+//console.log(student.getAverage());
 //console.log(student.getAverageBySubject("алхимия"));
 
 

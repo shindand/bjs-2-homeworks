@@ -111,7 +111,7 @@ const picknick = new FantasticBook(
      
 
     giveBookByName(bookName){
-         let bookBy = this.books.filter((item, index) => item.name == bookName);
+         let bookBy = this.books.filter(item => item.name == bookName);
          if (bookBy.length > 0) {
           this.books.forEach((element, index) => {
                   if (element.name == bookName) {

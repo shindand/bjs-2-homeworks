@@ -111,17 +111,12 @@ const picknick = new FantasticBook(
      
 
     giveBookByName(bookName){
-         let bookBy = this.books.filter(item => item.name == bookName);
-         if (bookBy.length > 0) {
-          this.books.forEach((element, index) => {
-                  if (element.name == bookName) {
-                  this.books.splice(index, 1);
-         }
-        });
-        return bookBy;
-    }
-    return null;
-  }
+       const book = this.findBookBy("name", bookName);
+        if (!book) return null;
+        this.books = this.books.filter((item) => item.name !== bookName);
+        return book;
+      }
+
 }
   const library = new Library("Библиотека имени Ленина");
 
@@ -142,8 +137,8 @@ const picknick = new FantasticBook(
     )
    );
 
-  library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-//library.addBook(new Magazine("Мурзилка", 1924, 60));
+ library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
+library.addBook(new Magazine("Мурзилка", 1924, 60));
 
 //console.log(library.findBookBy("name", "Властелин колец")); //null
 //console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
@@ -155,8 +150,8 @@ console.log("Количество книг до выдачи: " + library.books.
 console.log(library.giveBookByName("Машина времени"));
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
 
-console.log(library.giveBookByName("Машина fhfjffk"));
-console.log(library.books.length);
+//console.log(library.giveBookByName("Машина fhfjffk"));
+//console.log(library.books.length);
 
 
 //                          Задание 3
@@ -167,7 +162,7 @@ class Student {
         this.marks = {};
     }
 
-    addMark(subject, estimation) {
+    addMark(estimation, subject) {
       if (estimation >= 2 && estimation <= 5) {
         if (!this.marks[subject]) {
             this.marks[subject] = [];
@@ -195,19 +190,29 @@ class Student {
 
 }
 
-const student = new Student("Виктор");
+//const student = new Student("Виктор");
 
-//console.log(student.addMark("геометрия", 5));
+//console.log(student.addMark("геометрия", 0));
+//console.log(student.marks);
 //console.log(student.addMark("геометрия", 3));
 //console.log(student.addMark("геометрия", 5));
 //console.log(student.addMark("алгебра", 5));
-//console.log(student.addMark("алгебра", 3));
+//console.log(student.addMark("алгебра", 5));
 //console.log(student.getAverageBySubject("геометрия"));
 //console.log(student.getAverageBySubject("алгебра"));
 //console.log(student.getAverage());
 //console.log(student.getAverageBySubject("алхимия"));
 
-
+const student = new Student("Олег Никифоров");
+student.addMark(5, "химия");
+student.addMark(5, "химия");
+student.addMark(5, "физика");
+student.addMark(4, "физика");
+student.addMark(6, "физика"); // Оценка не добавится, так как больше 5
+console.log(student.getAverageBySubject("физика")); // Средний балл по предмету физика 4.5
+console.log(student.getAverageBySubject("биология")); // Вернёт 0, так как по такому предмету нет никаких оценок.
+console.log(student.getAverage()); // Средний балл по всем предметам 4.75
+console.log(student.marks);
 
 
  

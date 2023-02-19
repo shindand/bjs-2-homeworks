@@ -19,7 +19,7 @@ function validateCount(text){
 
 }
 
-console.log(validateCount('888'));
+//console.log(validateCount('888'));
 
 //console.log(validateCount('jjj'));
 
@@ -33,20 +33,23 @@ class Triangle {
         }
     }
     get perimeter(){
-        return this._perimeter = this.size1 + this.size2 + this.size3;
+        return this.size1 + this.size2 + this.size3;
     }
     get area(){
-       let perimetr = this._perimeter / 2;
-       return  +(Math.sqrt(perimetr * (perimetr - this.size1) * (perimetr - this.size2) * (perimetr - this.size3))).toFixed(3);
+      let perimetr = triangle.perimeter / 2;
+       return + (Math.sqrt(perimetr * (perimetr - this.size1) * (perimetr - this.size2) * (perimetr - this.size3))).toFixed(3);
     }
 }
 
-let triangle = new Triangle(6,10,15);
-
+let triangle = new Triangle(1,3,3);
+triangle = new Triangle(2, 5, 5);
 console.log(triangle.perimeter);
 console.log(triangle.area);
-//triangle = new Triangle(26,12,17);
-//console.log(triangle.perimeter);
+triangle = new Triangle(6,10,15);
+triangle.perimeter = "неправильное значение";
+triangle.area = "неправильное значение";
+console.log(triangle.perimeter);
+console.log(triangle.area);
 
 
 
@@ -56,17 +59,17 @@ function getTriangle(size1, size2, size3) {
     }
     catch(error) {
 
-    let objecToReturn = {
+  return objecToReturn = {
       get perimeter() {
         return "Ошибка! Треугольник не существует";
            },
         get area() {
         return "Ошибка! Треугольник не существует";
-     }
-    }
-    return [objecToReturn.perimeter, objecToReturn.area];
+         }
+      }
     }
 }
 
-console.log(getTriangle(30,20,15));
+console.log(getTriangle(2, 50, 5));
 console.log(triangle.perimeter);
+console.log(triangle.area);

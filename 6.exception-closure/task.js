@@ -36,13 +36,14 @@ class Triangle {
         return this.size1 + this.size2 + this.size3;
     }
     get area(){
-      let perimetr = triangle.perimeter / 2;
-       return + (Math.sqrt(perimetr * (perimetr - this.size1) * (perimetr - this.size2) * (perimetr - this.size3))).toFixed(3);
+      this.perimetr = triangle.perimeter / 2;
+       return + (Math.sqrt(this.perimetr * (this.perimetr - this.size1) * (this.perimetr - this.size2) * (this.perimetr - this.size3))).toFixed(3);
     }
 }
 
 let triangle = new Triangle(1,3,3);
 triangle = new Triangle(2, 5, 5);
+console.log(triangle);
 console.log(triangle.perimeter);
 console.log(triangle.area);
 triangle = new Triangle(6,10,15);
@@ -59,7 +60,7 @@ function getTriangle(size1, size2, size3) {
     }
     catch(error) {
 
-  return objecToReturn = {
+  return {
       get perimeter() {
         return "Ошибка! Треугольник не существует";
            },

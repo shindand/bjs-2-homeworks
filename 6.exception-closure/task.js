@@ -36,8 +36,8 @@ class Triangle {
         return this.size1 + this.size2 + this.size3;
     }
     get area(){
-      this.perimetr = triangle.perimeter / 2;
-       return + (Math.sqrt(this.perimetr * (this.perimetr - this.size1) * (this.perimetr - this.size2) * (this.perimetr - this.size3))).toFixed(3);
+      this.halfPerimetr = (this.size1 + this.size2 + this.size3) / 2;
+       return + (Math.sqrt(this.halfPerimetr * (this.halfPerimetr - this.size1) * (this.halfPerimetr - this.size2) * (this.halfPerimetr - this.size3))).toFixed(3);
     }
 }
 

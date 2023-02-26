@@ -27,27 +27,41 @@ class AlarmClock {
         return getHour + ":" + getMinutes;
     }
     start() {
-        if(!this.intervalId) {
-            this.callback = () => {if(this.alarmCollection.forEach((item) => item.time == this.getCurrentFormattedTime()) && this.canCall == false) {
-                             this.canCall = true;   
-                             return;
-                            }
-                        }
-        this.intervalId = setTimeout(callback, 1000);
+            if(!this.intervalId) {
+                
+            callback => {if(this.alarmCollection.forEach((item) => item.time == getCurrentFormattedTime) && canCall == true) {  
+                canCall = false;
+            }
+        }
+            this.intervalId = setTimeout((callback), 1000);
+            
+
+
+    //    if(!this.intervalId) {
+    //        callback => canCall = false;
+    //        this.intervalId = setTimeout((callback) => {
+    //            if(this.alarmCollection.forEach((item) => item.time == this.getCurrentFormattedTime()) && this.canCall == true) {  
+                    
+    //            }
+    //       }, 1000);
+        //    return this.intervalId;
+
+
+  //      if(!this.intervalId) {
+  //          this.callback = () => {if(this.alarmCollection.forEach((item) => item.time == this.getCurrentFormattedTime()) && this.canCall == false) {
+ //                            this.canCall = true;   
+ //                            return;
+ //                           }
+ //                       }
+ //       this.intervalId = setTimeout(callback, 1000);
 
          //  return this.alarmCollection.forEach((item) => console.log(item.time, this.getCurrentFormattedTime()));
            
 
-    //    if(!this.intervalId) {
-    //        this.intervalId = setTimeout(() => {
-    //            if(this.alarmCollection.forEach((item) => item[this.time] == this.getCurrentFormattedTime())) {
-    //                this.canCall = false;
-    //            }
-    //        }, 1000);
-        //    return this.intervalId;
+
    
         }
-       
+     // return console.log(canCall);
     }
 
     stop() {
@@ -57,7 +71,7 @@ class AlarmClock {
 
     clearAlarms() {
         this.alarmCollection = [];
-        stop();
+        this.stop();
     }
 
     resetAllCalls () {
@@ -74,7 +88,9 @@ const callback = f => f;
  clock.addClock("12:24", callback);
  clock.addClock("12:25", callback);
  clock.addClock("12:23", callback);
+ 
  console.log(clock.alarmCollection.length);
+ clock.start();
  clock.removeClock("12:24", 2);
  console.log(clock.alarmCollection);
  //console.log(clock.alarmCollection);

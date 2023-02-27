@@ -40,12 +40,7 @@ class AlarmClock {
              }
            );                   
         }
-        this.intervalId = setTimeout((this.alarmCollection.forEach((item) => {if (item.time == this.getCurrentFormattedTime() && item.canCall == true) {
-            item.canCall = false;
-            item.callback();
-          }
-         }
-       )), 1000);
+        this.intervalId = setInterval(startRing, 1000);
 
         }
 

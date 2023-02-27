@@ -13,7 +13,7 @@ class AlarmClock {
         
       }
       this.alarmCollection.push({time: time, callback: callback, canCall: true});
-      clock.start();
+     // clock.start();
     }
     removeClock(time) {
         this.alarmCollection = this.alarmCollection.filter(item => (item.time != time));
@@ -26,43 +26,15 @@ class AlarmClock {
         const getMinutes = newDate.getMinutes() > 9 ? newDate.getMinutes() : '0' + newDate.getMinutes();
         return getHour + ":" + getMinutes;
     }
+        
+  
+
     start() {
-            if(!this.intervalId) {
-                
-            callback => {if(this.alarmCollection.forEach((item) => item.time == getCurrentFormattedTime) && canCall == true) {  
-                canCall = false;
-            }
-        }
-            this.intervalId = setTimeout((callback), 1000);
-            
-
-
-    //    if(!this.intervalId) {
-    //        callback => canCall = false;
-    //        this.intervalId = setTimeout((callback) => {
-    //            if(this.alarmCollection.forEach((item) => item.time == this.getCurrentFormattedTime()) && this.canCall == true) {  
-                    
-    //            }
-    //       }, 1000);
-        //    return this.intervalId;
-
-
-  //      if(!this.intervalId) {
-  //          this.callback = () => {if(this.alarmCollection.forEach((item) => item.time == this.getCurrentFormattedTime()) && this.canCall == false) {
- //                            this.canCall = true;   
- //                            return;
- //                           }
- //                       }
- //       this.intervalId = setTimeout(callback, 1000);
-
-         //  return this.alarmCollection.forEach((item) => console.log(item.time, this.getCurrentFormattedTime()));
-           
-
-
-   
-        }
-     // return console.log(canCall);
-    }
+        if(this.intervalId) {
+           return;
+        } 
+}
+ 
 
     stop() {
         clearTimeout(this.intervalId);
@@ -81,6 +53,24 @@ class AlarmClock {
 
 }
 
+function starRingCycle() {
+    for (let elem in clock.alarmCollection) {
+        if (clock.alarmCollection[elem].time == clock.getCurrentFormattedTime() && clock.alarmCollection[elem].canCall == true) {
+            clock.alarmCollection[elem].canCall = false;
+            callback();
+        }
+    }
+}
+function startRing() {
+    clock.alarmCollection.forEach((item) => {if (item.time == clock.getCurrentFormattedTime() && item.canCall == true) {
+        item.canCall = false;
+        callback();
+      }
+     }
+   );                   
+}
+
+
 const callback = f => f;
  let clock = new AlarmClock();
  clock.addClock("12:23", callback);
@@ -90,16 +80,8 @@ const callback = f => f;
  clock.addClock("12:23", callback);
  
  console.log(clock.alarmCollection.length);
- clock.start();
  clock.removeClock("12:24", 2);
  console.log(clock.alarmCollection);
- //console.log(clock.alarmCollection);
-// console.log(clock.getCurrentFormattedTime);
- //console.log(clock.start);
- //clock.clearAlarms();
- //console.log(clock.alarmCollection);
- //console.log(clock.alarmCollection.length);
- //console.log(clock.getCurrentFormattedTime());
  
  clock.resetAllCalls();
  console.log(clock.alarmCollection[0].canCall);
@@ -107,3 +89,6 @@ const callback = f => f;
  console.log(clock.alarmCollection[2].canCall);
  console.log(clock.alarmCollection);
  clock.start();
+
+ startRing();
+ starRingCycle();

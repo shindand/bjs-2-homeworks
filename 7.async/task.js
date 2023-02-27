@@ -35,12 +35,17 @@ class AlarmClock {
         let startRing = () => {
             this.alarmCollection.forEach((item) => {if (item.time == this.getCurrentFormattedTime() && item.canCall == true) {
                 item.canCall = false;
-                item.callback;
+                item.callback();
               }
              }
            );                   
         }
-        this.intervalId = setTimeout((startRing), 1000);
+        this.intervalId = setTimeout((this.alarmCollection.forEach((item) => {if (item.time == this.getCurrentFormattedTime() && item.canCall == true) {
+            item.canCall = false;
+            item.callback();
+          }
+         }
+       )), 1000);
 
         }
 

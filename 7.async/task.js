@@ -32,15 +32,13 @@ class AlarmClock {
         if(this.intervalId) {
            return;
         } 
-        let startRing = () => {
-            this.alarmCollection.forEach((item) => {if (item.time == this.getCurrentFormattedTime() && item.canCall == true) {
-                item.canCall = false;
-                item.callback();
-              }
-             }
-           );                   
-        }
-        this.intervalId = setInterval(startRing, 1000);
+        
+        this.intervalId = setInterval(() => this.alarmCollection.forEach((item) => {if (item.time == this.getCurrentFormattedTime() && item.canCall == true) {
+            item.canCall = false;
+            item.callback();
+          }
+         }
+       ), 1000);
 
         }
 
